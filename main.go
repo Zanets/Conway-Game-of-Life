@@ -1,28 +1,59 @@
 package main
 
-func getSingle(x int, y int) bool {
+import (
+	"fmt"
+)
 
+// -1: nil, 0: dead, 1: alive
+func getSingle(x int, y int, space [][] Cell, h int, w int) int {
+	if x >= 0 && x < w && y >= 0 && y < h {
+		if space[y][x].IsAlive() {
+			return 1
+		} else {
+			return 0
+		}
+	} else {
+		return -1
+	}
+}
+
+type _pos struct {
+	x int
+	y int
 }
 
 func getAround(x int, y int, space [][] Cell) (int, int) {
-	dead, alive, _x, _y, h, w := 0, 0, 0, 0, len(space), len(space[0]) 
+	dead, alive, h, w := 0, 0, len(space), len(space[0]) 
+	poses := [8] _pos { 
+		_pos{x-1, y-1}, 
+		_pos{x, y-1}, 
+		_pos{x+1, y-1}, 
+		_pos{x-1, y}, 
+		_pos{x+1, y}, 
+		_pos{x-1, y+1}, 
+		_pos{x, y+1}, 
+		_pos{x+1, y+1}, 
+	}
 	
-	_x, _y = i-1, j-1
-	if _x >= 0 && _x < w && _y >= 0 _y < h && _y > 0 && space[_y][_x].isAlive() {
-		alive++
+	for _, pos := range poses {
+		switch status := getSingle(pos.x, pos.y, space, h, w); status {
+		case 0:
+			dead++
+		case 1:
+			alive++
+		}
 	}
 
 	return alive, dead
 }
 
 func rule1 (space [][] Cell) {
-	h := len(space)
-	for i, s := range space {
-		for j, c := range s {
-			if c.isAlive() {
-				_x, _y  := 0, 0
-				alive := 0
-
+	for y, s := range space {
+		for x, c := range s {
+			if c.IsAlive() {
+				fmt.Println()
+				alive, dead := getAround(x, y, space)
+				fmt.Printf("(%d, %d) %d %d\n", x, y, alive, dead)
 			}
 		}
 	}
@@ -43,7 +74,8 @@ func rule4 (space [][] Cell) {
 
 func main() {
 	w := World{}
-	w.Init(25,50,22)
+	w.Init(10,10,10)
+	w.AddRule(rule1)
 	w.Start()
 }
 

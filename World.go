@@ -11,7 +11,7 @@ type World struct {
 	w int
 	size int
 	space [][] Cell
-	rules [] func()
+	rules [] func(space [][] Cell)
 }
 
 func (this *World) Init(h int, w int, aliveCell int) {
@@ -36,18 +36,24 @@ func (this *World) Init(h int, w int, aliveCell int) {
 
 		// fmt.Printf("(%d) Set %d,%d\n", s[r], y, x)
 		this.space[y][x].Alive()
+		this.space[y][x].Demand()
 		s = append(s[:r], s[r+1:]...)
 	}
 }
 
 func (this *World) Show() {
-	for _, i := range this.space {
+	fmt.Printf(" ")
+	for x, _ := range this.space {
+		fmt.Printf("%d ", x)
+	}
+	for y, i := range this.space {
 		fmt.Println()
+		fmt.Printf("%d ", y)
 		for _, j := range i {
 			if j.IsAlive() {
-				fmt.Printf("%c ", '\u25CF')
+				fmt.Printf("* ")
 			} else {
-				fmt.Printf(" ")
+				fmt.Printf("  ")
 			}
 		}
 	}
