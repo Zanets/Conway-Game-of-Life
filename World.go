@@ -44,12 +44,12 @@ func (this *World) Init(h int, w int, aliveCell int) {
 func (this *World) Show() {
 	fmt.Println()
 	fmt.Printf("  ")
-	for x, _ := range this.space {
-		fmt.Printf("%d ", x)
+	for i := 0; i < len(this.space); i++ {
+		fmt.Printf("- ")
 	}
-	for y, i := range this.space {
+	for _, i := range this.space {
 		fmt.Println()
-		fmt.Printf("%d ", y)
+		fmt.Printf("| ")
 		for _, j := range i {
 			if j.IsAlive() {
 				fmt.Printf("* ")
@@ -57,11 +57,11 @@ func (this *World) Show() {
 				fmt.Printf("  ")
 			}
 		}
-		fmt.Printf("%d ", y)
+		fmt.Printf("| ")
 	}
 	fmt.Printf("\n  ")
-	for x, _ := range this.space {
-		fmt.Printf("%d ", x)
+	for i := 0; i < len(this.space); i++ {
+		fmt.Printf("- ")
 	}
 	fmt.Println()
 	time.Sleep(1 * time.Second)

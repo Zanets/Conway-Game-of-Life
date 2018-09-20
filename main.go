@@ -1,5 +1,9 @@
 package main
 
+import (
+	"flag"
+)
+
 
 // -1: nil, 0: dead, 1: alive
 func getSingle(x int, y int, space [][] Cell, h int, w int) int {
@@ -69,9 +73,15 @@ func default_rule (space [][] Cell) {
 }
 
 func main() {
-	w := World{}
-	w.Init(10,10,50)
-	w.AddRule(default_rule)
-	w.Start()
+
+	h := flag.Int("h", 10, "Height of world.")
+	w := flag.Int("w", 10, "Width of world.")
+	alive := flag.Int("alive", 50, "Alive cell at start.")
+	flag.Parse()
+
+	world := World{}
+	world.Init(*h, *w, *alive)
+	world.AddRule(default_rule)
+	world.Start()
 }
 
