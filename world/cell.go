@@ -1,4 +1,4 @@
-package main
+package world
 
 type Cell struct {
 	isAlive bool

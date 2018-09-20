@@ -1,4 +1,4 @@
-package main
+package world
 
 import (
 	"math/rand"
@@ -44,7 +44,7 @@ func (this *World) Init(h int, w int, aliveCell int) {
 func (this *World) Show() {
 	fmt.Println()
 	fmt.Printf("  ")
-	for i := 0; i < len(this.space); i++ {
+	for i := 0; i < this.w; i++ {
 		fmt.Printf("- ")
 	}
 	for _, i := range this.space {
@@ -60,7 +60,7 @@ func (this *World) Show() {
 		fmt.Printf("| ")
 	}
 	fmt.Printf("\n  ")
-	for i := 0; i < len(this.space); i++ {
+	for i := 0; i < this.w; i++ {
 		fmt.Printf("- ")
 	}
 	fmt.Println()
