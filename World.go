@@ -52,7 +52,7 @@ func (this *World) Show() {
 		fmt.Printf("| ")
 		for _, j := range i {
 			if j.IsAlive() {
-				fmt.Printf("* ")
+				fmt.Printf("%c ", j.Face())
 			} else {
 				fmt.Printf("  ")
 			}

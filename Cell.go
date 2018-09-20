@@ -14,7 +14,7 @@ func (this *Cell) Alive() {
 }
 
 func (this *Cell) Face() int32 {
-	return 'c'
+	return '*'
 }
 
 func (this *Cell) IsAlive() bool {
