@@ -1,8 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
 
 // -1: nil, 0: dead, 1: alive
 func getSingle(x int, y int, space [][] Cell, h int, w int) int {
@@ -47,35 +44,34 @@ func getAround(x int, y int, space [][] Cell) (int, int) {
 	return alive, dead
 }
 
-func rule1 (space [][] Cell) {
+// rules from wiki
+func default_rule (space [][] Cell) {
 	for y, s := range space {
 		for x, c := range s {
+			alive, _ := getAround(x, y, space)
 			if c.IsAlive() {
-				fmt.Println()
-				alive, dead := getAround(x, y, space)
-				fmt.Printf("(%d, %d) %d %d\n", x, y, alive, dead)
+				// fmt.Printf("(%d, %d) %d %d", x, y, alive, dead)
+				if alive < 2 {
+					space[y][x].Dead()
+				} else if alive == 2 || alive == 3 {
+					// do nothing
+				} else if alive > 3 {
+					space[y][x].Dead()
+				} 
+			} else {
+				if alive == 3 {
+					space[y][x].Alive()
+				}
 			}
 		}
 	}
 	
 }
 
-func rule2 (space [][] Cell) {
-	
-}
-
-func rule3 (space [][] Cell) {
-	
-}
-
-func rule4 (space [][] Cell) {
-	
-}
-
 func main() {
 	w := World{}
-	w.Init(10,10,10)
-	w.AddRule(rule1)
+	w.Init(10,10,50)
+	w.AddRule(default_rule)
 	w.Start()
 }
 

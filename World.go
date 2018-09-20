@@ -42,7 +42,8 @@ func (this *World) Init(h int, w int, aliveCell int) {
 }
 
 func (this *World) Show() {
-	fmt.Printf(" ")
+	fmt.Println()
+	fmt.Printf("  ")
 	for x, _ := range this.space {
 		fmt.Printf("%d ", x)
 	}
@@ -56,7 +57,13 @@ func (this *World) Show() {
 				fmt.Printf("  ")
 			}
 		}
+		fmt.Printf("%d ", y)
 	}
+	fmt.Printf("\n  ")
+	for x, _ := range this.space {
+		fmt.Printf("%d ", x)
+	}
+	fmt.Println()
 	time.Sleep(1 * time.Second)
 }
 
@@ -72,9 +79,9 @@ func (this *World) Start() {
 			rule(this.space)
 		}
 
-		for _, i := range this.space {
-			for _, j := range i {
-				j.Demand()
+		for y, i := range this.space {
+			for x, _ := range i {
+				this.space[y][x].Demand()
 			}
 		}
 		this.Show()
