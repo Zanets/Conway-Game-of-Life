@@ -9,9 +9,14 @@ import (
 type World struct {
 	h int
 	w int
+	isUsingSeed bool
 	size int
 	space [][] Cell
 	rules [] func(space [][] Cell)
+}
+
+func (this *World) IsUsingSeed(s bool) {
+	this.isUsingSeed = s
 }
 
 func (this *World) Init(h int, w int, aliveCell int) {
@@ -19,6 +24,10 @@ func (this *World) Init(h int, w int, aliveCell int) {
 	this.w = w
 	this.size = h * w
 	this.space = make( [][]Cell, h)
+
+	if this.isUsingSeed {
+		rand.Seed(time.Now().UTC().UnixNano())
+	}
 
 	s := make([]int, this.size)
 	for i := 0; i < this.size; i++ {
