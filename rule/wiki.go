@@ -1,7 +1,7 @@
 package rule
 
 import (
-	"world"
+	"gameoflife/world"
 )
 
 // rules from wiki

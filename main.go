@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"rule"
-	"world"
+	"gameoflife/rule"
+	"gameoflife/world"
 )
 
 func main() {

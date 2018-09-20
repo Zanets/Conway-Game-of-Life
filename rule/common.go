@@ -1,7 +1,7 @@
 package rule
 
 import (
-	"world"
+	"gameoflife/world"
 )
 
 type _pos struct {
