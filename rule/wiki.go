@@ -1,7 +1,7 @@
 package rule
 
 import (
-	"gameoflife/world"
+	"github.com/Zanets/Conway-Game-of-Life/world"
 )
 
 // rules from wiki

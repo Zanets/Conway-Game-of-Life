@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"gameoflife/rule"
-	"gameoflife/world"
+	"github.com/Zanets/Conway-Game-of-Life/rule"
+	"github.com/Zanets/Conway-Game-of-Life/world"
 )
 
 func main() {
